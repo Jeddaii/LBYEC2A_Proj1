@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include "options.h"
 
-//itemcode, qty
-int orderList[99][2];
-int orderNumber = 0;
-float total = 0.0;
-float cashPaid = 0.0;
-float discount = 0.0;
-
 int options() {
 	int run = 1;
 	int error = 0;
@@ -36,6 +29,9 @@ int options() {
 void takeOrder() {
 	int run = 1;
 	int error = 0;
+	int orderList[99][2];
+	int orderNumber = 0;
+	float total = 0.0;
 	
 	while(run) {		
 		//shows error code if there is a wrong input
@@ -97,6 +93,8 @@ void takeOrder() {
 
 void listOrder() {
 	int row = 0;
+	int orderList[99][2];
+	int orderNumber = 0;
 	for (row; row <= orderNumber; row++) {
 		printf("Item Number:%d", row);
 		if(orderList[row][0]!=-1) {
@@ -118,6 +116,8 @@ void listOrder() {
 void editOrder() {
 	int run = 1;
 	int error = 0;
+	int orderNumber = 0;
+	int orderList[99][2];
 	while(run) {
 		displayEdit(total);
 		displayError(error, "===INVALID OPTION! TRY AGAIN!===\n");
@@ -174,6 +174,7 @@ void editOrder() {
 void getReceipt() {
 	int run = 1;
 	int error = 0;
+	float discount = 0.0;
 	while(run) {
 		system("cls");
 		displayError(error, "===INVALID OPTION! TRY AGAIN!===\n");
@@ -216,6 +217,10 @@ void getReceipt() {
 
 void listReceipt() {
 	int row = 0;
+	int orderNumber = 0;
+	int orderList[99][2];
+	float cashPaid = 0.0;
+	float discount = 0.0;
 	for (row; row <= orderNumber; row++) {
 		if(orderList[row][0]!=-1) {
 			int stringLength = printMenuDetails(orderList[row][0],1);
@@ -242,6 +247,7 @@ void listReceipt() {
 
 void getCash() {
 	int run = 1;
+	float cashPaid = 0.0;
 	while(run) {
 		float cash = 0.0;
 		printf("Enter Cash: ");
